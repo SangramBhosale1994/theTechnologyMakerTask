@@ -1,0 +1,57 @@
+<div>
+    <div class="row my-3">
+        <div class="text-center col-md-8 col-6">
+            <input type="text" placeholder="Search Product.." class="w-50" (keyup)="search($event)">
+        </div>
+        <div class="col-md-4 col-6">
+            <button class="btn btn-success" (click)="addItem()"><i class="fa fa-plus px-2"> Add Product</i></button>
+        </div>
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Category</th>
+                    <th scope="col" class="text-center">Image</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let product of products | paginate: { itemsPerPage:7, currentPage:page, totalItems:totalLength}; let i= index">
+                    <th scope="col">{{product.id}}</th>
+                    <th scope="col">{{product.title}}</th>
+                    <th scope="col">{{product.price}}</th>
+                    <th scope="col">{{product.description}}</th>
+                    <th scope="col">{{product.category}}</th>
+                    <th scope="col" class="text-center"><img style="height:80px;" src="{{product.image}}" /></th>
+                    <th scope="col">
+                        <div class="px-2">
+                            <table class="table table-bordered mx-2">
+                                <tr>
+                                    <th scope="col">Rate</th>
+                                    <th scope="col">{{product.rating.rate}}</th>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Count</th>
+                                    <th scope="col">{{product.rating.count}}</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <button class="btn btn-primary my-2" (click)="updateItem(product.id)"><i class="fa fa-edit"> Update</i></button>
+                        <button class="btn btn-danger my-2" (click)="deleteItem()"><i class="fa fa-trash"> Delete</i></button>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls *ngIf="products.length > 7" class="text-center" (pageChange)="page = $event"></pagination-controls>
+    </div>
+
+</div>

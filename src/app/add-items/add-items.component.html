@@ -1,0 +1,37 @@
+<h1 class="mt-4 text-center">Add new product</h1>
+<hr>
+<div class="container">
+    <form [formGroup]="formdata" (ngSubmit)="submit(formdata.value)">
+        <input type="hidden" formControlName="id" />
+        <input type="hidden" formControlName="image" />
+
+        <label class="form-label  mt-3">Title</label><br>
+        <input type="text" 
+            formControlName="title" placeholder="Enter Title" class="form-control mt-1">
+        <br>
+        <label class="form-label  mt-3">Price</label><br>
+        <input type="number" formControlName="price" placeholder="Enter Price"
+            class="form-control mt-1">
+        <br>
+        <label class="form-label  mt-3">Image</label><br>
+        <input type="file" accept="image/*" formControlName="image" (change)="handleimage($event)"><br>
+        <br>
+        <label class="form-label  mt-3">Description</label><br>
+        <input type="text" formControlName="description" placeholder="Enter Description"
+            class="form-control  mt-1">
+        <br>
+        <label class="form-label  mt-3">Category</label><br>
+        <input type="text" formControlName="category" placeholder="Enter Category"
+            class="form-control  mt-1">
+        <br>
+        <label class="form-label  mt-3">Rate</label><br>
+        <input type="text" formControlName="rate" placeholder="Enter Rate"
+            class="form-control  mt-1">
+        <br>
+        <label class="form-label  mt-3">Count</label><br>
+        <input type="text" formControlName="count" placeholder="Enter Count"
+            class="form-control  mt-1">
+        <br>
+        <button class="btn btn-success mt-3" type="submit">Save</button>
+    </form>
+</div>
